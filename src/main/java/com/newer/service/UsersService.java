@@ -1,5 +1,5 @@
 package com.newer.service;
 
-public class UsersService {
+public interface UsersService {
 
 }
