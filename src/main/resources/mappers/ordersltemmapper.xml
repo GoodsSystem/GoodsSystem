@@ -52,11 +52,11 @@
 		<association property="gid" resultMap="gs" column="g_id"></association>
 	</resultMap>
 	<!--查询订单的总金额 -->
-	<select id="totalmoney" resultMap="java.lang.Integer" >
+	<select id="totalmoney" resultType="java.lang.Integer" >
 		select sum(or_price) from orders where or_state=4
 	</select>
 	<!--查询订单的总金额 -->
-	<select id="datetotalmoney" resultMap="java.lang.Integer" >
+	<select id="datetotalmoney" resultType="java.lang.Integer" >
 		select sum(or_price) from orders os, orders_item om where or_state=4  and os.or_id=om.or_id and to_days(om.o_time) = to_days(now());
 	</select>
 	<!--查询全部订单 -->

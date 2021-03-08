@@ -12,6 +12,8 @@
   <link href="assets/css/codemirror.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/ace.min.css" />
   <link rel="stylesheet" href="font/css/font-awesome.min.css" />
+  <script src="js/vue.js"></script>
+  <script src="js/axios.js"></script>
   <!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -24,8 +26,6 @@
   <script src="assets/layer/layer.js" type="text/javascript"></script>
   <script src="assets/laydate/laydate.js" type="text/javascript"></script>
   <script src="assets/dist/echarts.js"></script>
-  <script src="js/vue.js"></script>
-  <script src="js/axios.js"></script>
   <title>交易金额</title>
 </head>
 
@@ -34,11 +34,8 @@
     <div class="margin clearfix">
       <div class="amounts_style">
         <div class="transaction_Money clearfix">
-          <div class="Money"><span>成交总额：1.2234.3456.00元</span>
+          <div class="Money"><span>成交总额：{{totalmoney}}元</span>
             <p id="datetime">最新统计时间:
-              <script>
-                setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();");
-              </script>
             </p>
           </div>
           <div class="Money"><span><em>￥</em>3456.00元</span>
@@ -90,18 +87,34 @@
   </div>
   <script>
     var vue = new Vue({
-      el:"#app",
-      data:{
-        orders:[],
+      el: "#app",
+      data: {
+        totalmoney:0,
+        datetotalmoney:[],
       },
-      methods:{
-        open(){
-          axios
+      mounted() {
+        this.total(); 
+      },
+      methods: {
+        total() {
+          axios.post("totalmoney").then(input => {
+            this.totalmoney = input.data[0];
+            console.log("数据错误" + input.data);
+          }).catch(error => {
+            alert("数据错误" + error);
+          });
+        },
+        datetotal() {
+          axios.post("datetotalmoney").then(input => {
+            this.datetotalmoney = input.data;
+            
+          }).catch(error => {
+            alert("数据错误" + error);
+          });
         }
       }
-      
-    })
 
+    })
   </script>
 </body>
 
@@ -131,5 +144,8 @@
 
     });
   })
+</script>
 
+<script>
+  setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();");
 </script>
