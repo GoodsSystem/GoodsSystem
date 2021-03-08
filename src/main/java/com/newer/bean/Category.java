@@ -14,6 +14,7 @@ public class Category implements Serializable {
 	@Autowired
 	private CategorySecond sceid;
 	@Autowired
+	
 	private CategoryFirst firid;
 	@Autowired
 	private Goods gid;
