@@ -10,4 +10,7 @@
 	<select id="login" resultMap="u" parameterType="com.newer.bean.Users">
 		select * from users
 	</select>
+	
 </mapper>
+
+ 

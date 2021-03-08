@@ -11,8 +11,9 @@ public class Orders implements Serializable {
 	 */
 	private static final long serialVersionUID = 2113908989878634712L;
 	private Integer orid;
-	@Autowired
-	private OrdersItem oid;
+	private String orstate;
+	private Integer ornum;
+	private double orprice;
 	@Autowired
 	private Users uid;
 	public Integer getOrid() {
@@ -21,17 +22,29 @@ public class Orders implements Serializable {
 	public void setOrid(Integer orid) {
 		this.orid = orid;
 	}
-	public OrdersItem getOid() {
-		return oid;
-	}
-	public void setOid(OrdersItem oid) {
-		this.oid = oid;
-	}
 	public Users getUid() {
 		return uid;
 	}
 	public void setUid(Users uid) {
 		this.uid = uid;
+	}
+	public String getOrstate() {
+		return orstate;
+	}
+	public void setOrstate(String orstate) {
+		this.orstate = orstate;
+	}
+	public Integer getOrnum() {
+		return ornum;
+	}
+	public void setOrnum(Integer ornum) {
+		this.ornum = ornum;
+	}
+	public double getOrprice() {
+		return orprice;
+	}
+	public void setOrprice(double orprice) {
+		this.orprice = orprice;
 	}
 	
 }
