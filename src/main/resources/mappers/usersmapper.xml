@@ -2,12 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newer.dao.UsersDao">
-	<resultMap type="com.newer.bean.Users" id="u">
-		<id column="u_id" property="uid" />
-		<result column="u_name" property="uname" />
-		<result column="u_password" property="upassword" />
+	<resultMap type="com.newer.bean.Slogan" id="s">
+		<id column="s_id" property="sid" />
+		<result column="s_img" property="simg" />
+		<result column="s_size" property="ssize" />
+		<result column="s_link" property="slink" />
+		<result column="s_state" property="sstate" />
+		<association property="stime" column="s_time"></association>
 	</resultMap>
-	<select id="login" resultMap="u" parameterType="com.newer.bean.Users">
-		select * from users
-	</select>
+
+	
 </mapper>

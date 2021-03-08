@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.dao.SloganDao">
+	<resultMap type="com.newer.bean.Slogan" id="s">
+		<id column="s_id" property="sid" />
+		<result column="s_img" property="simg" />
+		<result column="s_size" property="sszie" />
+		<result column="s_link" property="slink" />
+		<result column="s_time" property="stime" />
+		<association property="categorySlogan" resultMap="cs"></association>
+		
+	</resultMap>
+	
+	<resultMap type="com.newer.bean.CategorySlogan" id="cs">
+		<id column="slo_id" property="sloid" />
+		<result column="slo_name" property="sloname" />
+	</resultMap>
+	
+</mapper>
