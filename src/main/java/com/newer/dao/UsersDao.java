@@ -12,4 +12,6 @@ import com.newer.bean.Users;
 @Mapper
 public interface UsersDao {
 
+	//用户查询方法
+	public List<Users> login();
 }

@@ -17,8 +17,21 @@ public class Users implements Serializable{
 	private String usex;
 	private String uemail;
 	private Integer ustate;
+	private String uphone;
+	public String getUphone() {
+		return uphone;
+	}
+	public void setUphone(String uphone) {
+		this.uphone = uphone;
+	}
 	@Autowired
 	private Addres addres;
+	public Addres getAddres() {
+		return addres;
+	}
+	public void setAddres(Addres addres) {
+		this.addres = addres;
+	}
 	public Integer getUid() {
 		return uid;
 	}

@@ -6,6 +6,11 @@
 		<id column="u_id" property="uid" />
 		<result column="u_name" property="uname" />
 		<result column="u_password" property="upassword" />
+		<result column="u_root" property="uroot" />
+		<result column="u_sex" property="usex" />
+		<result column="u_email" property="uemail" />
+		<result column="u_state" property="ustate" />
+		<result column="u_phone" property="uphone" />
 	</resultMap>
 	<select id="login" resultMap="u" parameterType="com.newer.bean.Users">
 		select * from users

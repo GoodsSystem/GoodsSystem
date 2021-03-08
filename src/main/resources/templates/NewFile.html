@@ -5,6 +5,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<table border="1" align="center" width="500">
+<thead>
+<th>ID</th>
+<th>用户姓名</th>
+<th>用户密码</th>
+<th>用户权限</th>
+<th>性别</th>
+<th>邮箱</th>
+<th>状态</th>
+</thead>
+<tbody>
+<tr th:each="us:${list}">
+<td th:text="${us.uid}"></td>
+<td th:text="${us.uname}"></td>
+<td th:text="${us.upassword}"></td>
+<td th:text="${us.uroot}"></td>
+<td th:text="${us.usex}"></td>
+<td th:text="${us.uemail}"></td>
+<td th:text="${us.ustate}"></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
