@@ -1,6 +1,7 @@
 package com.newer.bean;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,7 @@ public class Users implements Serializable{
 	private String usex;
 	private String uemail;
 	private Integer ustate;
+	private LocalDateTime utime;
 	@Autowired
 	private Addres addres;
 	public Integer getUid() {
@@ -61,6 +63,14 @@ public class Users implements Serializable{
 	public void setUstate(Integer ustate) {
 		this.ustate = ustate;
 	}
+	public LocalDateTime getUtime() {
+		return utime;
+	}
+	public void setUtime(LocalDateTime utime) {
+		this.utime = utime;
+	}
+	
+	
 	
 	
 }
