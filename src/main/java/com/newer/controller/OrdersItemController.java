@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,5 +43,21 @@ public class OrdersItemController {
 		List<OrdersItem> list=ordersitemService.monthorders();
 		return list;	
 	}
+	
+	@PostMapping("order")
+	public List<OrdersItem> order(String state){
+		System.out.println(state);
+		List<OrdersItem> list=ordersitemService.implorder(state);
+		return list;	
+	}
+	@PostMapping("del")
+	public int del(int id) {
+		return ordersitemService.del(id)? 2:0;
+	}
+	@PostMapping("amend")
+	public int amend(int id) {
+		return ordersitemService.amend(id)? 1:0;
+	}
+	
 		
 }

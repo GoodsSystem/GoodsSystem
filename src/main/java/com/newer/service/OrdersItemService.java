@@ -16,5 +16,11 @@ public interface OrdersItemService {
 		public  List<OrdersItem> dayorders();
 		//查询当月订单
 		public  List<OrdersItem> monthorders();
-	
+		//动态查询订单   根据状态 --成功，代发货，代付款，待收货，失败
+		public List<OrdersItem> implorder(String state);
+		//删除二个表中的数据
+		public boolean del(int id);
+		//修改状态
+		public boolean amend(int id);
+		
 }
