@@ -5,9 +5,10 @@
 	<resultMap type="com.newer.bean.Slogan" id="s">
 		<id column="s_id" property="sid" />
 		<result column="s_img" property="simg" />
-		<result column="s_size" property="sszie" />
+		<result column="s_size" property="ssize" />
 		<result column="s_link" property="slink" />
 		<result column="s_time" property="stime" />
+		<result column="s_state" property="sstate" />
 		<association property="categorySlogan" resultMap="cs"></association>
 		
 	</resultMap>

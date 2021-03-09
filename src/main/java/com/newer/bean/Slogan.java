@@ -12,29 +12,13 @@ public class Slogan implements Serializable{
 	private static final long serialVersionUID = -8210386939027430061L;
 	private Integer sid;
 	private String simg;
-	private String sszie;
+	private String ssize;
 	private String slink;
 	private Date stime;
-	@Override
-	public String toString() {
-		return "Slogan [sid=" + sid + ", simg=" + simg + ", sszie=" + sszie + ", slink=" + slink + ", stime=" + stime
-				+ ", sstate=" + sstate + ", sdf=" + sdf + ", creatTimeStr=" + creatTimeStr + ", categorySlogan="
-				+ categorySlogan + "]";
-	}
 	private Integer sstate;
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//格式化时间
 	private String creatTimeStr;
 	private CategorySlogan categorySlogan;
-	
-	public CategorySlogan getCategorySlogan() {
-		return categorySlogan;
-	}
-	public void setCategorySlogan(CategorySlogan categorySlogan) {
-		this.categorySlogan = categorySlogan;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	public Integer getSid() {
 		return sid;
 	}
@@ -47,11 +31,11 @@ public class Slogan implements Serializable{
 	public void setSimg(String simg) {
 		this.simg = simg;
 	}
-	public String getSszie() {
-		return sszie;
+	public String getSsize() {
+		return ssize;
 	}
-	public void setSszie(String sszie) {
-		this.sszie = sszie;
+	public void setSsize(String ssize) {
+		this.ssize = ssize;
 	}
 	public String getSlink() {
 		return slink;
@@ -59,20 +43,11 @@ public class Slogan implements Serializable{
 	public void setSlink(String slink) {
 		this.slink = slink;
 	}
-
 	public Date getStime() {
 		return stime;
 	}
 	public void setStime(Date stime) {
 		this.stime = stime;
-		String time = sdf.format(stime);
-        setCreatTimeStr(time);
-	}
-	public String getCreatTimeStr() {
-		return creatTimeStr;
-	}
-	public void setCreatTimeStr(String creatTimeStr) {
-		this.creatTimeStr = creatTimeStr;
 	}
 	public Integer getSstate() {
 		return sstate;
@@ -80,5 +55,31 @@ public class Slogan implements Serializable{
 	public void setSstate(Integer sstate) {
 		this.sstate = sstate;
 	}
-	
+	public SimpleDateFormat getSdf() {
+		return sdf;
+	}
+	public void setSdf(SimpleDateFormat sdf) {
+		this.sdf = sdf;
+	}
+	public String getCreatTimeStr() {
+		return creatTimeStr;
+	}
+	public void setCreatTimeStr(String creatTimeStr) {
+		this.creatTimeStr = creatTimeStr;
+	}
+	public CategorySlogan getCategorySlogan() {
+		return categorySlogan;
+	}
+	public void setCategorySlogan(CategorySlogan categorySlogan) {
+		this.categorySlogan = categorySlogan;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	@Override
+	public String toString() {
+		return "Slogan [sid=" + sid + ", simg=" + simg + ", ssize=" + ssize + ", slink=" + slink + ", stime=" + stime
+				+ ", sstate=" + sstate + ", sdf=" + sdf + ", creatTimeStr=" + creatTimeStr + ", categorySlogan="
+				+ categorySlogan + "]";
+	}
 }
