@@ -18,13 +18,13 @@ public class OrdersItemController {
 	OrdersItemService ordersitemService;
 	
 	@PostMapping("totalmoney")
-	public Integer totalmoney() {
-		Integer money= ordersitemService.money();
+	public Double totalmoney() {
+		Double money= ordersitemService.money();
 		return money;		
 	}
 	@PostMapping("datetotalmoney")
-	public Integer datetotalmoney() {
-		Integer money=ordersitemService.daymoney();
+	public Double datetotalmoney() {
+		Double money=ordersitemService.daymoney();
 		return money;
 	}
 	@PostMapping("all")
