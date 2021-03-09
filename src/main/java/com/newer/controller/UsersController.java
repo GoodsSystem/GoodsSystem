@@ -117,7 +117,7 @@ public class UsersController {
 				return i;
 				
 			}
-			@PostMapping
+			
 			@RequestMapping("changestate")
 			@ResponseBody
 			public int changestate(@RequestParam("uid") String  uid,@RequestParam("ustate") String ustate) {
