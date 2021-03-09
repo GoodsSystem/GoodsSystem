@@ -52,23 +52,23 @@
 		<association property="gid" resultMap="gs" column="g_id"></association>
 	</resultMap>
 	<!--查询订单的总金额 -->
-	<select id="totalmoney" resultType="java.lang.Integer" >
-		select sum(or_price) from orders where or_state=4
+	<select id="totalmoney" resultType="java.lang.Double" >
+		select sum(or_price) from orders where or_state='成功'
 	</select>
 	<!--查询订单的总金额 -->
-	<select id="datetotalmoney" resultType="java.lang.Integer" >
-		select sum(or_price) from orders os, orders_item om where or_state=4  and os.or_id=om.or_id and to_days(om.o_time) = to_days(now());
+	<select id="datetotalmoney" resultType="java.lang.Double" >
+		select sum(or_price) from orders os, orders_item om where  os.or_id=om.or_id and to_days(om.o_time) = to_days(now()) and os.or_state='成功';
 	</select>
 	<!--查询全部订单 -->
 	<select id="all" resultMap="om" >
-		select os.or_price,os.or_num,om.o_time,om.or_id from  orders os, orders_item om where os.or_id=om.or_id
+		select os.or_price,os.or_num,om.o_time,om.o_id  from  orders os, orders_item om where os.or_id=om.or_id
 	</select>
 	<!--查询当天订单 -->
 	<select id="day" resultMap="om" >	
-		select os.or_price,os.or_num,om.o_time,om.or_id from  orders os, orders_item om where os.or_id=om.or_id and to_days(om.o_time) = to_days(now());
+		select os.or_price,os.or_num,om.o_time,om.o_id  from  orders os, orders_item om where os.or_id=om.or_id and to_days(om.o_time) = to_days(now());
 	</select>
 	<!--查询当月订单 -->
 	<select id="month" resultMap="om" >
-		select os.or_price,os.or_num,om.o_time,om.or_id from  orders os, orders_item om where os.or_id=om.or_id and month(FROM_UNIXTIME(om.o_time)) = month( now( ) ) and year(from_unixtime(om.o_time))=year(now());
+		select os.or_price,os.or_num,om.o_time,om.o_id  from  orders os, orders_item om where os.or_id=om.or_id and month(FROM_UNIXTIME(om.o_time)) = month( now( ) ) and year(from_unixtime(om.o_time))=year(now());
 	</select>
 </mapper>

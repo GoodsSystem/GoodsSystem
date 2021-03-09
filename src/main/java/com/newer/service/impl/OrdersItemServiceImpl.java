@@ -15,13 +15,13 @@ public class OrdersItemServiceImpl implements OrdersItemService{
 	OrdersItemDao orderditemDao;
 
 	@Override
-	public Integer money() {
+	public Double money() {
 		// TODO Auto-generated method stub
 		return orderditemDao.totalmoney();
 	}
 
 	@Override
-	public Integer daymoney() {
+	public Double daymoney() {
 		// TODO Auto-generated method stub
 		return orderditemDao.datetotalmoney();
 	}
