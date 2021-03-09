@@ -16,13 +16,6 @@
 	<select id="login" resultMap="u" parameterType="com.newer.bean.Users">
 		select * from users where u_name=#{uname} and u_password=#{upassword}
 	</select>
-	<select id="findall" resultMap="u" parameterType="com.newer.bean.Users">
-		select * from users 
-	</select>
-	<select id="search" resultMap="u" parameterType="com.newer.bean.Users">
-		select * from users where u_id=#{uid}
-	</select>
-
 
 	<resultMap type="com.newer.bean.Store" id="st">
 		<id column="sto_id" property="stoid" />

@@ -43,6 +43,25 @@ public class OrdersItemServiceImpl implements OrdersItemService{
 		// TODO Auto-generated method stub
 		return orderditemDao.month();
 	}
+
+	@Override
+	public List<OrdersItem> implorder(String state) {
+		if(state.equals("null")) {
+			state=null;
+		}
+		return orderditemDao.order(state);
+	}
+
+	@Override
+	public boolean del(int id) {
+		return orderditemDao.del(id)>0 ?true:false;
+	}
+
+	@Override
+	public boolean amend(int id) {
+		// TODO Auto-generated method stub
+		return orderditemDao.amend(id)>0?true:false;
+	}
 	
 	
 }

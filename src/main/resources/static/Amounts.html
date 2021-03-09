@@ -42,21 +42,22 @@
             <p id="datetime">最新统计时间:
             </p>
           </div>
-          <div class="Money"><span>{{datetotalmoney}}元</span>
+          <div class="Money">
+            <span>{{datetotalmoney}}元</span>
             <p>当天成交额</p>
           </div>
           <div class="l_f Statistics_btn">
-            <a href="javascript:ovid()" title="当月统计" onclick="Statistics_btn()"
+            <!-- <a  title="当月统计" onclick="Statistics_btn()"
               class="btn  btn-info btn-sm no-radius"><i class="bigger fa fa-bar-chart "></i>
               <h5 class="margin-top">当月统计</h5>
-            </a>
+            </a> -->
           </div>
         </div>
         <div class="border clearfix">
           <span class="l_f">
-            <a href="javascript:ovid()" class="btn btn-info">全部订单</a>
-            <a href="javascript:ovid()" class="btn btn-danger">当天订单</a>
-            <a href="javascript:ovid()" class="btn btn-danger">当月订单</a>
+            <a  class="btn btn-info" @click="openall()">全部订单</a>
+            <a  class="btn btn-danger" @click="openday()">当天订单</a>
+            <a  class="btn btn-danger"@click="openmonth()">当月订单</a>
           </span>
           <span class="r_f">共：<b>2334</b>笔</span>
         </div>
@@ -65,8 +66,7 @@
             <el-table
               :data="orders"
               border
-              show-summary
-              style="width: 80%">
+              style="width: 100%">
               <el-table-column
                 prop="oid"
                 label="序号"
@@ -77,23 +77,20 @@
                 label="订单号">
               </el-table-column>
               <el-table-column
-                prop="amount1"
+                prop="otime"
                 sortable
-                label="数值 1">
+                label="时间">
               </el-table-column>
               <el-table-column
-                prop="amount2"
-                sortable
-                label="数值 2">
+                prop="orid.orstate"
+                label="状态">
               </el-table-column>
               <el-table-column
-                prop="amount3"
+                prop="orid.orprice"
                 sortable
-                label="数值 3">
+                label="金额">
               </el-table-column>
-            </el-table>
           </template>
-          
         </div>
       </div>
     </div>
@@ -108,11 +105,12 @@
         totalmoney:'',
         datetotalmoney:'',
         orders:[],
+        search: '',
       },
       mounted() {
         this.total();
         this.datetotal();
-        this.all(); 
+        this.openall(); 
       },
       methods: {
         total() {
@@ -130,47 +128,33 @@
             alert("数据错误" + error);
           });
         },
-        all() {
+        openall() {
           axios.post("all").then(input => {
             this.orders = input.data;
           }).catch(error => {
             alert("数据错误" + error);
           });
         },
+        openday(){
+          axios.post("day").then(input => {
+            this.orders = input.data;
+          }).catch(error => {
+            alert("数据错误" + error);
+          });
+        },
+        openmonth(){
+          axios.post("month").then(input => {
+            this.orders = input.data;
+          }).catch(error => {
+            alert("数据错误" + error);
+          });
+        }
       }
 
     })
   </script>
 </body>
-
-</html>
-<script>
-  $(function () {
-    var oTable1 = $('#sample-table').dataTable({
-      "aaSorting": [], //默认第几个排序
-      "bStateSave": false, //状态保存
-      //"dom": 't',
-      "bFilter": false,
-      "aoColumnDefs": [
-        //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-        {
-          "orderable": false,
-          "aTargets": [0, 1, 2, 3, 4]
-        } // 制定列不参与排序
-      ]
-    });
-    $('table th input:checkbox').on('click', function () {
-      var that = this;
-      $(this).closest('table').find('tr > td:first-child input:checkbox')
-        .each(function () {
-          this.checked = that.checked;
-          $(this).closest('tr').toggleClass('selected');
-        });
-
-    });
-  })
-</script>
-
 <script>
   setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();");
 </script>
+</html>
