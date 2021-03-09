@@ -18,5 +18,33 @@ public class UsersServiceImpl implements UsersService{
 		// TODO Auto-generated method stub
 		return usersDao.login();
 	}
+	@Override
+	public int updateState(Users users) {
+		// TODO Auto-generated method stub
+		return usersDao.up(users);
+	}
+	@Override
+	public int delusers(int uid) {
+		// TODO Auto-generated method stub
+		return usersDao.delUser(uid);
+	}
+	@Override
+	public Users queryById(Users user) {
+		// TODO Auto-generated method stub
+		return usersDao.findbyid(user);
+	}
+	@Override
+	public int aluser(Users user) {
+		// TODO Auto-generated method stub
+		return usersDao.upuser(user);
+	}
+	@Override
+	public List<Users> queryLike(String n) {
+		// TODO Auto-generated method stub
+		return usersDao.mohu(n);
+	}
+	
+	
+	
 
 }

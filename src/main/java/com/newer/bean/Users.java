@@ -18,6 +18,13 @@ public class Users implements Serializable{
 	private String uemail;
 	private Integer ustate;
 	private String uphone;
+	
+	@Override
+	public String toString() {
+		return "Users [uid=" + uid + ", uname=" + uname + ", upassword=" + upassword + ", uroot=" + uroot + ", usex="
+				+ usex + ", uemail=" + uemail + ", ustate=" + ustate + ", uphone=" + uphone + ", addres=" + addres
+				+ "]";
+	}
 	public String getUphone() {
 		return uphone;
 	}

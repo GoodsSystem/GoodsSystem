@@ -15,4 +15,27 @@
 	<select id="login" resultMap="u" parameterType="com.newer.bean.Users">
 		select * from users
 	</select>
+	<select id="findbyid" resultMap="u" parameterType="com.newer.bean.Users">
+	select * from users where u_id = #{uid}
+	</select>
+	<update id="up" parameterType="com.newer.bean.Users">
+				<!-- 根据传入的参数判断是否追加SQL语句 -->
+				<if test="ustate==1">
+					update users set u_state = 0 where u_id = #{uid}
+				</if>
+				<if test="ustate==0">
+					update users set u_state =1 where u_id = #{uid}
+				</if>
+	</update>
+	
+	<update id="upuser" parameterType="com.newer.bean.Users">
+ UPDATE users  set u_name = #{uname},u_email=#{uemail},u_sex=#{usex},u_phone=#{uphone} WHERE u_id = #{uid}
+	</update>
+	<!-- 模糊查询 -->
+	<select id="mohu" resultMap="u" parameterType="String">
+	select * from users where u_name like '%${n}%' 
+	or 	u_phone like '%${n}%'
+	or u_email like '%${n}%'
+	</select>
+	
 </mapper>
