@@ -14,6 +14,10 @@
   <link rel="stylesheet" href="font/css/font-awesome.min.css" />
   <script src="js/vue.js"></script>
   <script src="js/axios.js"></script>
+  <!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
   <!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -38,7 +42,7 @@
             <p id="datetime">最新统计时间:
             </p>
           </div>
-          <div class="Money"><span><em>￥</em>3456.00元</span>
+          <div class="Money"><span>{{datetotalmoney}}元</span>
             <p>当天成交额</p>
           </div>
           <div class="l_f Statistics_btn">
@@ -57,27 +61,39 @@
           <span class="r_f">共：<b>2334</b>笔</span>
         </div>
         <div class="Record_list">
-          <table class="table table-striped table-bordered table-hover" id="sample-table">
-            <thead>
-              <tr>
-                <th width="100px">序号</th>
-                <th width="200px">订单编号</th>
-                <th width="180px">成交时间</th>
-                <th width="120px">成交金额(元)</th>
-                <th width="180px">状态</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>34</td>
-                <td>HD2016061200456787</td>
-                <td>2016-6-12</td>
-                <td>234</td>
-                <td>成功</td>
-              </tr>
-            </tbody>
-          </table>
-
+          <template>
+            <el-table
+              :data="orders"
+              border
+              show-summary
+              style="width: 80%">
+              <el-table-column
+                prop="oid"
+                label="序号"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="orid.ornum"
+                label="订单号">
+              </el-table-column>
+              <el-table-column
+                prop="amount1"
+                sortable
+                label="数值 1">
+              </el-table-column>
+              <el-table-column
+                prop="amount2"
+                sortable
+                label="数值 2">
+              </el-table-column>
+              <el-table-column
+                prop="amount3"
+                sortable
+                label="数值 3">
+              </el-table-column>
+            </el-table>
+          </template>
+          
         </div>
       </div>
     </div>
@@ -89,17 +105,19 @@
     var vue = new Vue({
       el: "#app",
       data: {
-        totalmoney:0,
-        datetotalmoney:[],
+        totalmoney:'',
+        datetotalmoney:'',
+        orders:[],
       },
       mounted() {
-        this.total(); 
+        this.total();
+        this.datetotal();
+        this.all(); 
       },
       methods: {
         total() {
           axios.post("totalmoney").then(input => {
-            this.totalmoney = input.data[0];
-            console.log("数据错误" + input.data);
+            this.totalmoney = input.data;
           }).catch(error => {
             alert("数据错误" + error);
           });
@@ -107,11 +125,18 @@
         datetotal() {
           axios.post("datetotalmoney").then(input => {
             this.datetotalmoney = input.data;
-            
+
           }).catch(error => {
             alert("数据错误" + error);
           });
-        }
+        },
+        all() {
+          axios.post("all").then(input => {
+            this.orders = input.data;
+          }).catch(error => {
+            alert("数据错误" + error);
+          });
+        },
       }
 
     })

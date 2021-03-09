@@ -48,7 +48,7 @@ public class Store implements Serializable {
         setCreatTimeStr(time);
 	}
 	private void setCreatTimeStr(String stoTime) {
-		this.setStoTime(stoTime);
+		this.stoTime=stoTime;
 		
 	}
 	public Integer getStostate() {

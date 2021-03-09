@@ -9,9 +9,9 @@ import com.newer.bean.OrdersItem;
 public interface OrdersItemDao {
 	
 	//查询订单的总金额
-	public Integer totalmoney();
+	public Double totalmoney();
 	//查询当天订单的总金额
-	public Integer datetotalmoney();
+	public Double datetotalmoney();
 	//查询全部订单
 	public List<OrdersItem> all();
 	//查询当天订单
