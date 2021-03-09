@@ -1,6 +1,7 @@
 package com.newer.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 import javax.xml.crypto.Data;
 
@@ -15,6 +16,7 @@ public class Store implements Serializable {
 	private Integer stoid;
 	private String stoname;
 	private Data stotime;
+	private String stoTime;
 	private Integer stostate;
 	private String stopeple;
 	private String stophone;
@@ -22,6 +24,7 @@ public class Store implements Serializable {
 	private String stocard;
 	private String stodes;
 	private String stoimg;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//格式化时间
 	@Autowired
 	private Users uid;
 	public Integer getStoid() {
@@ -41,6 +44,12 @@ public class Store implements Serializable {
 	}
 	public void setStotime(Data stotime) {
 		this.stotime = stotime;
+		String time = sdf.format(stotime);
+        setCreatTimeStr(time);
+	}
+	private void setCreatTimeStr(String stoTime) {
+		this.stoTime=stoTime;
+		
 	}
 	public Integer getStostate() {
 		return stostate;
@@ -90,5 +99,6 @@ public class Store implements Serializable {
 	public void setUid(Users uid) {
 		this.uid = uid;
 	}
+	
 	
 }

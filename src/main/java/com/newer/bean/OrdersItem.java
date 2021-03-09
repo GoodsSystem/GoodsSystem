@@ -1,10 +1,11 @@
 package com.newer.bean;
 
 import java.io.Serializable;
-
-import javax.xml.crypto.Data;
-
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class OrdersItem implements Serializable{
 
@@ -13,44 +14,22 @@ public class OrdersItem implements Serializable{
 	 */
 	private static final long serialVersionUID = 1966271102439155790L;
 	private Integer oid;
-	private Integer onum;
-	private Data otime;
-	private Double oprice;
-	private Integer ostate;
 	private Integer ocount;
 	private String odes;
 	@Autowired
+	private Orders orid;
+	@Autowired
 	private Goods gid;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone ="GMT+8" )
+	private Date otime;
 	public Integer getOid() {
 		return oid;
 	}
 	public void setOid(Integer oid) {
 		this.oid = oid;
 	}
-	public Integer getOnum() {
-		return onum;
-	}
-	public void setOnum(Integer onum) {
-		this.onum = onum;
-	}
-	public Data getOtime() {
-		return otime;
-	}
-	public void setOtime(Data otime) {
-		this.otime = otime;
-	}
-	public Double getOprice() {
-		return oprice;
-	}
-	public void setOprice(Double oprice) {
-		this.oprice = oprice;
-	}
-	public Integer getOstate() {
-		return ostate;
-	}
-	public void setOstate(Integer ostate) {
-		this.ostate = ostate;
-	}
+	
 	public Integer getOcount() {
 		return ocount;
 	}
@@ -68,6 +47,20 @@ public class OrdersItem implements Serializable{
 	}
 	public void setGid(Goods gid) {
 		this.gid = gid;
+	}
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone ="GMT+8" )
+	public Date getOtime() {
+		return otime;
+	}
+	public void setOtime(Date otime) {
+		this.otime = otime;
+	}
+	public Orders getOrid() {
+		return orid;
+	}
+	public void setOrid(Orders orid) {
+		this.orid = orid;
 	}
 	
 }

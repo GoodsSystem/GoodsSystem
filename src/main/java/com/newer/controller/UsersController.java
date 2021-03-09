@@ -34,8 +34,8 @@ public class UsersController {
 		System.out.println(u.getUname() + "~~~~" + u.getUpassword());
 		Users user = usersService.userslogin(u);
 		// 获取时间
-		LoginLog lg=new LoginLog();
-		lg.setUid(user.getUid());
+//		LoginLog lg=new LoginLog();
+//		lg.setUid(user.getUid());
 //		boolean f = loginlogService.LoginLogsave(lg);
 		if (user != null ) {
 			s.setAttribute("u", user);
