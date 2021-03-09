@@ -12,11 +12,11 @@
 		<result column="u_state" property="ustate"/>
 		
 	</resultMap>
-<<<<<<< HEAD
+
 	<select id="login" resultMap="u" parameterType="com.newer.bean.Users">
 		select * from users where u_name=#{uname} and u_password=#{upassword}
 	</select>
-=======
+
 	<resultMap type="com.newer.bean.Store" id="st">
 		<id column="sto_id" property="stoid" />
 		<result column="sto_name" property="stoname" />
@@ -28,5 +28,5 @@
 		<result column="sto_des" property="stodes" />
 		<result column="sto_img" property="stoimg" />
 	</resultMap>
->>>>>>> e0d09f00d028bb785df79ca45b2ebfdcb9ac078a
+
 </mapper>
