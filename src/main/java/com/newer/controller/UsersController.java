@@ -31,19 +31,28 @@ public class UsersController {
 	LoginLogService loginlogService;
 	LoginLog loginLog;
 
-	@PostMapping("login")
-	public String setUsers(HttpServletRequest req, Users u, String vcode) {
+	@RequestMapping("login")
+	@ResponseBody
+	public int setUsers(HttpServletRequest req,@RequestParam("uname") String uname,@RequestParam("upassword") String upassword) {
 		HttpSession s = req.getSession();
+		Users u=new Users();
+		u.setUname(uname);
+		u.setUpassword(upassword);
 		System.out.println(u.getUname() + "~~~~" + u.getUpassword());
 		Users user = usersService.userslogin(u);
-		// 获取时间
-//		LoginLog lg=new LoginLog();
-//		lg.setUid(user.getUid());
-//		boolean f = loginlogService.LoginLogsave(lg);
+		Integer i=0;
 		if (user != null ) {
+			Integer f=user.getUstate();
+			if(f==1) {
+				i=1;
 			s.setAttribute("u", user);
+			}
+		}else {
+			i=2;
 		}
-		return user != null ? "../static/index" : "../static/login";
+		
+		System.out.println(i);
+		return i;
 	}
 	
 	
