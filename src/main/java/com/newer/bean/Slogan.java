@@ -1,8 +1,8 @@
 package com.newer.bean;
 
 import java.io.Serializable;
-
-import javax.xml.crypto.Data;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Slogan implements Serializable{
 
@@ -14,8 +14,27 @@ public class Slogan implements Serializable{
 	private String simg;
 	private String sszie;
 	private String slink;
-	private Data stime;
+	private Date stime;
+	@Override
+	public String toString() {
+		return "Slogan [sid=" + sid + ", simg=" + simg + ", sszie=" + sszie + ", slink=" + slink + ", stime=" + stime
+				+ ", sstate=" + sstate + ", sdf=" + sdf + ", creatTimeStr=" + creatTimeStr + ", categorySlogan="
+				+ categorySlogan + "]";
+	}
 	private Integer sstate;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//格式化时间
+	private String creatTimeStr;
+	private CategorySlogan categorySlogan;
+	
+	public CategorySlogan getCategorySlogan() {
+		return categorySlogan;
+	}
+	public void setCategorySlogan(CategorySlogan categorySlogan) {
+		this.categorySlogan = categorySlogan;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public Integer getSid() {
 		return sid;
 	}
@@ -40,11 +59,20 @@ public class Slogan implements Serializable{
 	public void setSlink(String slink) {
 		this.slink = slink;
 	}
-	public Data getStime() {
+
+	public Date getStime() {
 		return stime;
 	}
-	public void setStime(Data stime) {
+	public void setStime(Date stime) {
 		this.stime = stime;
+		String time = sdf.format(stime);
+        setCreatTimeStr(time);
+	}
+	public String getCreatTimeStr() {
+		return creatTimeStr;
+	}
+	public void setCreatTimeStr(String creatTimeStr) {
+		this.creatTimeStr = creatTimeStr;
 	}
 	public Integer getSstate() {
 		return sstate;

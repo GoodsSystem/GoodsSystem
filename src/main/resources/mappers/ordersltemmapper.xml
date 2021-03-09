@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.dao.OrdersItemDao">
+	<resultMap type="com.newer.bean.Addres" id="add">
+		<id column="ad_id" property="uid" />
+		<result column="ad_des" property="addes" />
+	</resultMap>
+	
+	
+	<resultMap type="com.newer.bean.Users" id="u">
+		<id column="u_id" property="uid" />
+		<result column="u_name" property="uname" />
+		<result column="u_password" property="upassword" />
+		<result column="u_root" property="uroot" />	
+		<result column="u_sex" property="usex" />
+		<result column="u_email" property="u_email" />
+		<result column="u_state" property="ustate" />	
+		<association property="addres" resultMap="add" column="ad_ders"></association>
+	</resultMap>
+	
+	
+	
+	
+	<resultMap type="com.newer.bean.Orders" id="or">
+		<id column="or_id" property="orid" />
+		<result column="or_state" property="orstate" />
+		<result column="or_num" property="ornum" />
+		<result column="or_price" property="orprice" />
+		<association property="uid" resultMap="u" column="u_id"></association>
+	</resultMap>
+	
+	<resultMap type="com.newer.bean.Goods" id="gs">
+		<id column="g_id" property="gid" />
+		<result column="g_name" property="gname" />
+		<result column="g_img" property="gimg" />
+		<result column="g_price" property="gprice" />
+		<result column="g_spe" property="gspe" />
+		<result column="g_state" property="gstate" />
+		<result column="g_des" property="gdes" />
+	</resultMap>
+	
+	
+	
+	<resultMap type="com.newer.bean.OrdersItem" id="om">
+		<id column="o_id" property="oid" />
+		<result column="o_count" property="ocount" />
+		<result column="o_des" property="odes" />
+		<result column="o_time" property="otime" />
+		<!-- 通过映射操作完成对象属性的关联 一对一映射 -->
+		<association property="orid" resultMap="or" column="or_id"></association>
+		<association property="gid" resultMap="gs" column="g_id"></association>
+	</resultMap>
+	<!--查询订单的总金额 -->
+	<select id="totalmoney" resultType="java.lang.Double" >
+		select sum(or_price) from orders where or_state='成功'
+	</select>
+	<!--查询订单的总金额 -->
+	<select id="datetotalmoney" resultType="java.lang.Double" >
+		select sum(or_price) from orders os, orders_item om where  os.or_id=om.or_id and to_days(om.o_time) = to_days(now()) and os.or_state='成功';
+	</select>
+	<!--查询全部订单 -->
+	<select id="all" resultMap="om" >
+		select os.or_price,os.or_num,om.o_time,om.o_id ,os.or_state from  orders os, orders_item om where os.or_id=om.or_id
+	</select>
+	<!--查询当天订单 -->
+	<select id="day" resultMap="om" >	
+		select os.or_price,os.or_num,om.o_time,om.o_id , os.or_state from  orders os, orders_item om where os.or_id=om.or_id and to_days(om.o_time) = to_days(now());
+	</select>
+	<!--查询当月订单 -->
+	<select id="month" resultMap="om" >
+		select os.or_price,os.or_num,om.o_time,om.o_id , os.or_state from  orders os, orders_item om where os.or_id=om.or_id and month((om.o_time)) = month( now( ) ) and year((om.o_time))=year(now());
+	</select>
+	<!--根据状态动态查询订单信息 order -->
+	<select id="order" resultMap="om" parameterType="java.lang.String">
+		select os.or_price,os.or_num,om.o_time,om.o_id, os.or_state ,om.g_id ,os.or_id from  orders os, orders_item om 
+		<where>
+			<if test="state!=null">
+				and os.or_state=#{state}
+			</if>
+			and os.or_id=om.or_id
+		</where>		 		
+	</select>
+	<!-- 删除订单数据 -->
+	<delete id="del" parameterType="int">
+		 DELETE orders_item,orders from orders_item LEFT JOIN orders ON orders_item.or_id=orders.or_id WHERE orders_item.or_id=#{id}
+	</delete>
+	<!-- 发货  -->
+	<update id="amend" parameterType="int">
+		 update orders set or_state='待收货' where or_id=#{id}
+	</update>
+</mapper>

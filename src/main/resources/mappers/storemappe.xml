@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.dao.StoreDao">
+	<resultMap type="com.newer.bean.Users" id="u">
+		<id column="u_id" property="uid" />
+		<result column="u_name" property="uname" />
+		<result column="u_password" property="upassword" />
+	</resultMap>
+	<resultMap type="com.newer.bean.Store" id="st">
+		<id column="sto_id" property="stoid" />
+		<result column="sto_name" property="stoname" />
+		<result column="sto_state" property="stostate" />
+		<result column="sto_peple" property="stopeple" />
+		<result column="sto_phone" property="stophone" />
+		<result column="sto_email" property="stoemail" />
+		<result column="sto_card" property="stocard" />
+		<result column="sto_des" property="stodes" />
+		<result column="sto_img" property="stoimg" />
+		<result column="sto_reason" property="storeason" />
+		<result column="sto_time" property="stoTime" />
+		<result column="sto_type" property="stotype" />
+		<collection property="uid" resultMap="u"></collection>
+	</resultMap>
+	<select id="selstore" resultMap="st">
+		select * from store where sto_state=1 or sto_state=2
+	</select>
+	<select id="noPassStore" resultMap="st">
+		select * from store where sto_state=0
+	</select>
+	<delete id="delstore" parameterType="int">
+		delete from store where sto_id=#{stoid}
+	</delete>
+	<select id="detstore" resultMap="st" parameterType="int">
+		select * from store s,users u where s.u_id=u.u_id and sto_id=#{stoid} 
+	</select>
+	<select id="fuzzyquery" resultMap="st" parameterType="String">
+		select * from store where sto_name like '%${n}%'
+		 or sto_type like '%${n}%'
+		 or sto_state like '%${n}%'
+		 or sto_des like '%${n}%'
+	</select>
+</mapper>

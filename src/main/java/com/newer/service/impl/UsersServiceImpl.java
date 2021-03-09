@@ -47,4 +47,59 @@ public class UsersServiceImpl implements UsersService{
 	
 	
 
+	@Autowired
+	UsersDao usersdao;
+	
+	
+	
+	@Override
+	public Users userslogin(Users u) {
+		return  usersdao.login(u) ;
+	}
+
+
+
+	@Override
+	public List<Users> usersserch() {
+		return usersdao.findall();
+	}
+
+
+
+	@Override
+	public Users usersearch(int uid) {
+		return usersdao.search(uid);
+	}
+
+
+
+	@Override
+	public boolean change(Users u) {
+		return usersdao.changemsg(u)>0?true:false;
+	}
+
+
+
+	@Override
+	public Users verpwd(Users u) {
+		return usersdao.change(u);
+	}
+
+
+
+	@Override
+	public boolean changepwd(Users u) {
+		
+		return usersdao.changepassword(u)>0?true:false;
+	}
+
+
+
+	@Override
+	public Boolean changes(Users u) {
+		return usersdao.changestate(u)>0?true:false;
+	}
+
+
+
 }

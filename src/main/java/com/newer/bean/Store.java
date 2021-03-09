@@ -1,6 +1,7 @@
 package com.newer.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 import javax.xml.crypto.Data;
 
@@ -15,6 +16,7 @@ public class Store implements Serializable {
 	private Integer stoid;
 	private String stoname;
 	private Data stotime;
+	private String stoTime;
 	private Integer stostate;
 	private String stopeple;
 	private String stophone;
@@ -22,8 +24,30 @@ public class Store implements Serializable {
 	private String stocard;
 	private String stodes;
 	private String stoimg;
+	private String storeason;
+	private String stotype;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//格式化时间
 	@Autowired
 	private Users uid;
+	
+	public String getStotype() {
+		return stotype;
+	}
+	public void setStotype(String stotype) {
+		this.stotype = stotype;
+	}
+	public String getStoTime() {
+		return stoTime;
+	}
+	public void setStoTime(String stoTime) {
+		this.stoTime = stoTime;
+	}
+	public String getStoreason() {
+		return storeason;
+	}
+	public void setStoreason(String storeason) {
+		this.storeason = storeason;
+	}
 	public Integer getStoid() {
 		return stoid;
 	}
@@ -41,6 +65,12 @@ public class Store implements Serializable {
 	}
 	public void setStotime(Data stotime) {
 		this.stotime = stotime;
+		String time = sdf.format(stotime);
+        setCreatTimeStr(time);
+	}
+	private void setCreatTimeStr(String stoTime) {
+		this.stoTime=stoTime;
+		
 	}
 	public Integer getStostate() {
 		return stostate;
@@ -90,5 +120,13 @@ public class Store implements Serializable {
 	public void setUid(Users uid) {
 		this.uid = uid;
 	}
+	@Override
+	public String toString() {
+		return "Store [stoid=" + stoid + ", stoname=" + stoname + ", stotime=" + stotime + ", stoTime=" + stoTime
+				+ ", stostate=" + stostate + ", stopeple=" + stopeple + ", stophone=" + stophone + ", stoemail="
+				+ stoemail + ", stocard=" + stocard + ", stodes=" + stodes + ", stoimg=" + stoimg + ", sdf=" + sdf
+				+ ", uid=" + uid + "]";
+	}
+	
 	
 }
