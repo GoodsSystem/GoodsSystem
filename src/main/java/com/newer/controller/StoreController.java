@@ -58,7 +58,7 @@ public class StoreController {
 	@GetMapping("refusestore")
 	@ResponseBody
 	public Boolean upda(String stoid,String storeason) {
-		System.out.println(storeason);
+		String str="拒绝理由:"+storeason;
 		Integer id=Integer.parseInt(stoid);
 		Store s= new Store();
 		s.setStoid(id);

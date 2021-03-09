@@ -122,6 +122,7 @@
 				},
 				refuse: function (a) {
 					axios.get("refusestore?stoid=" + a + "&storeason=" + this.reason).then(input => {
+						alert("拒绝成功")
 						this.dialogVisible = false
 						window.location = "Shops_Audit.html"
 					}).catch(error => {

@@ -38,7 +38,6 @@
             <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">用户名：
               </label>
               <div class="col-sm-9"><input type="text" name="用户名" id="website-title" v-model="name"
-                
                   class="col-xs-7 text_info" disabled="disabled">
                 &nbsp;&nbsp;&nbsp;<a href="javascript:ovid()" onclick="change_Password()"
                   class="btn btn-warning btn-xs">修改密码</a></div>
@@ -107,18 +106,19 @@
         </div>
       </div>
     </div>
-  </div>
+
     <!--修改密码样式-->
     <div class="change_Pass_style" id="change_Pass">
       <ul class="xg_style">
-        <li><label class="label_name">原&nbsp;&nbsp;密&nbsp;码</label><input name="原密码" type="password" class=""  v-model="oldpassword"
-            id="password"></li>
-        <li><label class="label_name">新&nbsp;&nbsp;密&nbsp;码</label><input name="新密码" type="password" class="" v-model="newpassword"
-            id="Nes_pas"></li>
+        <li><label class="label_name">原&nbsp;&nbsp;密&nbsp;码</label><input name="原密码" type="password" class=""
+            v-model="oldpassword" id="password"></li>
+        <li><label class="label_name">新&nbsp;&nbsp;密&nbsp;码</label><input name="新密码" type="password" class=""
+            v-model="newpassword" id="Nes_pas"></li>
 
 
       </ul>
-            <div class="center"> <button class="btn btn-primary" type="button" id="submit" @click="changepwd">确认修改</button></div>
+      <div class="center"> <button class="btn btn-primary" type="button" id="submit" @click="changepwd">确认修改</button>
+      </div>
     </div>
   </div>
 </body>
@@ -130,11 +130,11 @@
     data: {
       array: [],
       arrayuser: [],
-      name:"",
-      email:"",
-      state:"",
-      oldpassword:"",
-      newpassword:"",
+      name: "",
+      email: "",
+      state: "",
+      oldpassword: "",
+      newpassword: "",
     },
     mounted() {
       this.getjson();
@@ -151,34 +151,34 @@
       },
       getuser: function () {
         axios.post("getone?").then(input => {
-          this.arrayuser = input.data 
-          this.name=input.data.uname
-          this.email=input.data.uemail
+          this.arrayuser = input.data
+          this.name = input.data.uname
+          this.email = input.data.uemail
         })
       },
-      changemsg:function(){
-        axios.post("getstate?uname="+this.name+"&uemail="+this.email).then(input=>{
-          this.state=input.data.uroot
-          if(this.state==1){
+      changemsg: function () {
+        axios.post("getstate?uname=" + this.name + "&uemail=" + this.email).then(input => {
+          this.state = input.data.uroot
+          if (this.state == 1) {
             alert("修改成功")
-            window.location="admin_info.html"
+            window.location = "admin_info.html"
           }
-         
+
         })
-       
-       
+
+
       },
-      changepwd:function(){
-        axios.post("repassword?oldpassword="+this.oldpassword+"&newpassword="+this.newpassword).then(input=>{
-         
-          this.state=input.data
-          if(this.state==0){
-            alert("修改成功！请重新登录")
-          window.location="login.html"
+      changepwd: function () {
+        alert(111)
+        axios.post("repassword?oldpassword=" + this.oldpassword + "&newpassword=" + this.newpassword).then(input => {
+          this.state = input.data
+          if (this.state == 0) {
+              alert("修改成功！请重新登录")
+              window.location = "login.html"
           }
-          
+
         })
-        
+
       }
 
 
@@ -243,7 +243,7 @@
       area: ['300px', '300px'],
       shadeClose: true,
       content: $('#change_Pass'),
-      
+
       yes: function (index, layero) {
         if ($("#password").val() == "") {
           layer.alert('原密码不能为空!', {
