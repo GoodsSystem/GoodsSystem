@@ -18,19 +18,19 @@ public interface HomeDao {
 	public Double totalPrice();
 	
 	//未处理订单数
-	@Select("select count(or_id) from orders where or_state='未处理'")
+	@Select("select count(or_id) from orders where or_state='待收货'")
 	public Integer unOrders();
 		
 	//待发货订单数
-	@Select("select count(or_id) from orders where or_state='代发货'")
+	@Select("select count(or_id) from orders where or_state='待发货'")
 	public Integer droOrders();
 			
 	//待结算订单数
-	@Select("select count(or_id) from orders where or_state='待结算'")
+	@Select("select count(or_id) from orders where or_state='代付款'")
 	public Integer forOrders();
 			
 	//已成交订单数
-	@Select("select count(or_id) from orders where or_state='成交'")
+	@Select("select count(or_id) from orders where or_state='成功'")
 	public Integer makeOrders();
 			
 	//交易失败订单数
